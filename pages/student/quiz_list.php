@@ -19,7 +19,6 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 

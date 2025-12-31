@@ -181,7 +181,7 @@ $categories = $categoryStudent->getAllCategory(4);
 
 
               <div class="flex gap-2">
-                <a class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-center" href="quiz_list.php?id=<?php echo ($categorie['id']) ?>"" >
+                <a class=href="quiz_list.php?id=<?php echo ($categorie['id']) ?>" "flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-center" " >
                   Affiche Quiz
                 </a>
                 <button class="flex-1 border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-2 rounded-lg transition">

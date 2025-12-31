@@ -16,7 +16,6 @@ $student_id = $_SESSION['user_id'] ?? 0;
 $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +145,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-gray-800 mb-2"><?php echo htmlspecialchars($quiz['titre']); ?></h3>
                             <p class="text-gray-600 text-sm mb-4"><?php echo htmlspecialchars($quiz['description']) ?></p>
-                            <a href="#"
+                            <a href="take_quiz.php?quiz_id=<?php echo $quiz['id']; ?>"
                                 class="block text-center bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg">
                                 Commencer
                             </a>

@@ -4,6 +4,8 @@
  * Gère la connexion à la base de données
  */
 
+
+
 class Database {
     private static $instance = null;
     private $connection;
@@ -12,6 +14,7 @@ class Database {
      * Constructeur privé pour empêcher l'instanciation directe
      */
     private function __construct() {
+       
         try {
             $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $options = [
@@ -24,6 +27,8 @@ class Database {
         } catch (PDOException $e) {
             die("Erreur de connexion : " . $e->getMessage());
         }
+
+      
     }
     
     

@@ -91,7 +91,7 @@ class Security {
     // Vérifie si l'utilisateur est étudiant
     
     public static function isStudent() {
-        return self::isLoggedIn() && $_SESSION['user_role'] === 'etudiant';
+        return self::isLoggedIn() && $_SESSION['user_role'] === 'student';
     }
     
     // Redirige si non étudiant

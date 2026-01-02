@@ -17,3 +17,4 @@ if($answer == $q['correct_option']) $_SESSION['score']++;
 $_SESSION['current_question']++;
 header('Location: take_quiz.php');
 exit;
+

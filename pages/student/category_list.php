@@ -38,38 +38,51 @@ $categories = $categoryStudent->getAllCategory(4);
 
   <!-- NAVBAR -->
   <nav class="gradient-primary text-white shadow-xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center space-x-3">
-          <div class="bg-white/20 p-2 rounded-lg"><i class="fas fa-graduation-cap text-xl"></i></div>
-          <div>
-            <h1 class="text-xl font-bold">QuizMaster</h1>
-            <p class="text-sm text-blue-200">Espace Étudiant</p>
-          </div>
-        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
 
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="dashboard.php" class="font-semibold hover:text-blue-200 transition"><i class="fas fa-home mr-2"></i>Tableau de Bord</a>
-          <a href="categories.php" class="hover:text-blue-200 transition"><i class="fas fa-folder mr-2"></i>Catégories</a>
-          <a href="history.php" class="hover:text-blue-200 transition"><i class="fas fa-history mr-2"></i>Historique</a>
-          <a href="category_list.php" class="hover:text-blue-200 transition"><i class="fas fa-play-circle mr-2"></i>Categorie</a>
-        </div>
+                <!-- Logo et nom du site -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-white/20 p-2 rounded-lg">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">QuizMaster</h1>
+                        <p class="text-sm text-blue-200">Espace Étudiant</p>
+                    </div>
+                </div>
 
-        <div class="flex items-center space-x-4">
-          <div class="text-right hidden md:block">
-            <p class="font-medium"><?php echo htmlspecialchars($_SESSION['user_nom'] ?? 'Étudiant') ?></p>
-            <p class="text-sm text-blue-200">Étudiant</p>
-          </div>
-          <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-            <i class="fas fa-user"></i>
-          </div>
-          <a href="../auth/logout.php" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition">
-            <i class="fas fa-sign-out-alt"></i>
-          </a>
+                <!-- Menu de navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.php" class="font-semibold hover:text-blue-200 transition">
+                        <i class="fas fa-home mr-2"></i>Tableau de Bord
+                    </a>
+                    <a href="category_list.php" class="hover:text-blue-200 transition">
+                        <i class="fas fa-play-circle mr-2"></i>Categorie
+                    </a>
+                    <a href="history.php" class="hover:text-blue-200 transition">
+                        <i class="fas fa-history mr-2"></i>Historique
+                    </a>
+
+                </div>
+
+                <!-- Info utilisateur -->
+                <div class="flex items-center space-x-4">
+                    <div class="text-right hidden md:block">
+                        <p class="font-medium"><?php echo htmlspecialchars($_SESSION['user_nom']) ?></p>
+                        <p class="text-sm text-blue-200">Étudiant</p>
+                    </div>
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <a href="../auth/logout.php"
+                        class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
   <!-- MAIN -->
   <main class="max-w-7xl mx-auto px-4 py-10">

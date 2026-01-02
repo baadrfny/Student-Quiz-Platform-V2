@@ -1,20 +1,45 @@
 <?php
-// 1. استدعاء الملفات الأساسية وبدء الجلسة
 require_once '../../config/database.php';
 require_once '../../classes/Database.php';
 require_once '../../classes/Security.php';
 require_once '../../classes/studentClasses/ShowQuestion.php';
 
+
+// Security: Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     die("Error: You must be logged in to take the quiz.");
 }
 $etudiant_id = $_SESSION['user_id'];
 
-
+// Check Quiz ID
 if(!isset($_GET['quiz_id'])){
     die("Quiz ID missing");
 }
 $quiz_id = (int)$_GET['quiz_id'];
+
+$conn = Database::getInstance()->getConnection();
+
+// --- NEW: CHECK FOR EXISTING ATTEMPT ---
+$check_query = "SELECT id FROM results WHERE etudiant_id = :etudiant_id AND quiz_id = :quiz_id";
+$check_stmt = $conn->prepare($check_query);
+$check_stmt->execute([':etudiant_id' => $etudiant_id, ':quiz_id' => $quiz_id]);
+
+if ($check_stmt->fetch()) {
+    echo "
+    <!DOCTYPE html>
+    <html>
+    <head><script src='https://cdn.tailwindcss.com'></script></head>
+    <body class='bg-gray-100 flex items-center justify-center min-h-screen text-center'>
+        <div class='bg-white p-8 rounded-xl shadow-lg max-w-md'>
+            <h2 class='text-2xl font-bold text-red-600 mb-4'>Tentative limitée</h2>
+            <p class='text-gray-600 mb-6'>Vous avez déjà complété ce quiz. Une seule tentative est autorisée.</p>
+            <a href='dashboard.php' class='bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition'>Retour</a>
+        </div>
+    </body>
+    </html>";
+    exit;
+}
+// --- END CHECK ---
 
 $showQ = new ShowQuestion();
 $questions = $showQ->getQuestionsByQuiz($quiz_id);
@@ -26,20 +51,16 @@ if(empty($questions)){
 if(!isset($_SESSION['current_question'])) $_SESSION['current_question'] = 0;
 if(!isset($_SESSION['score'])) $_SESSION['score'] = 0;
 
+// Save Results at the end
 if($_SESSION['current_question'] >= count($questions)){
     $final_score = $_SESSION['score'];
     $total_questions_count = count($questions);
-    $etudiant_id = $_SESSION['user_id'] ?? 0; 
-
-    $conn = Database::getInstance()->getConnection(); 
 
     try {
-
         $query = "INSERT INTO results (quiz_id, etudiant_id, score, total_questions, created_at) 
                   VALUES (:quiz_id, :etudiant_id, :score, :total_questions, NOW())";
         
         $stmt = $conn->prepare($query);
-        
         $stmt->execute([
             ':quiz_id'         => $quiz_id,
             ':etudiant_id'     => $etudiant_id,

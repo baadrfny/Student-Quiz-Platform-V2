@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../../config/database.php';
 require_once '../../classes/Database.php';
 require_once '../../classes/Security.php';
@@ -28,52 +28,54 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Étudiant - QuizMaster</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             font-family: 'Inter', sans-serif;
         }
-        
+
         /* Animation pour les cartes */
         .card-hover:hover {
             transform: translateY(-5px);
             transition: all 0.3s ease;
         }
-        
+
         /* Gradient personnalisé */
         .gradient-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
+
         .gradient-success {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
-        
+
         .gradient-warning {
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
-    
+
     <!-- ========== NAVIGATION ========== -->
     <nav class="gradient-primary text-white shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                
+
                 <!-- Logo et nom du site -->
                 <div class="flex items-center space-x-3">
                     <div class="bg-white/20 p-2 rounded-lg">
@@ -84,23 +86,21 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                         <p class="text-sm text-blue-200">Espace Étudiant</p>
                     </div>
                 </div>
-                
+
                 <!-- Menu de navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="dashboard.php" class="font-semibold hover:text-blue-200 transition">
                         <i class="fas fa-home mr-2"></i>Tableau de Bord
                     </a>
-                    <a href="categories.php" class="hover:text-blue-200 transition">
-                        <i class="fas fa-folder mr-2"></i>Catégories
+                    <a href="category_list.php" class="hover:text-blue-200 transition">
+                        <i class="fas fa-play-circle mr-2"></i>Categorie
                     </a>
                     <a href="history.php" class="hover:text-blue-200 transition">
                         <i class="fas fa-history mr-2"></i>Historique
                     </a>
-                    <a href="category_list.php" class="hover:text-blue-200 transition">
-                        <i class="fas fa-play-circle mr-2"></i>Categorie
-                    </a>
+
                 </div>
-                
+
                 <!-- Info utilisateur -->
                 <div class="flex items-center space-x-4">
                     <div class="text-right hidden md:block">
@@ -110,18 +110,18 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                         <i class="fas fa-user"></i>
                     </div>
-                    <a href="../auth/logout.php" 
-                       class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition">
+                    <a href="../auth/logout.php"
+                        class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
-    
+
     <!-- ========== MAIN CONTENT ========== -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
+
         <!-- Section Bienvenue -->
         <div class="gradient-primary text-white rounded-2xl p-8 shadow-xl mb-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -132,14 +132,14 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                 <div class="mt-4 md:mt-0 bg-white/20 p-4 rounded-xl">
                     <p class="text-sm">Membre depuis</p>
                     <p class="font-bold">15 Mars 2024</p>
-                
+
                 </div>
             </div>
         </div>
-        
+
         <!-- Cartes Statistiques -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            
+
             <!-- Carte Quiz Complétés -->
             <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
                 <div class="flex items-center justify-between mb-4">
@@ -153,7 +153,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                 </div>
                 <p class="text-gray-600 text-sm">+2 cette semaine</p>
             </div>
-            
+
             <!-- Carte Score Moyen -->
             <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
                 <div class="flex items-center justify-between mb-4">
@@ -167,7 +167,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                 </div>
                 <p class="text-gray-600 text-sm">+5% depuis le mois dernier</p>
             </div>
-            
+
             <!-- Carte Temps d'Étude -->
             <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-purple-500">
                 <div class="flex items-center justify-between mb-4">
@@ -182,11 +182,11 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                 <p class="text-gray-600 text-sm">Cette semaine</p>
             </div>
         </div>
-        
+
         <!-- Actions Rapides -->
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Actions Rapides</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            
+
             <!-- Carte Catégories -->
             <a href="categories.php" class="card-hover">
                 <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
@@ -197,7 +197,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     <p class="text-gray-600 text-sm">Parcourir les quiz par matière</p>
                 </div>
             </a>
-            
+
             <!-- Carte Nouveau Quiz -->
             <a href="quiz_list.php" class="card-hover">
                 <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
@@ -208,7 +208,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     <p class="text-gray-600 text-sm">Commencer un test immédiatement</p>
                 </div>
             </a>
-            
+
             <!-- Carte Progression -->
             <a href="history.php" class="card-hover">
                 <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
@@ -219,7 +219,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     <p class="text-gray-600 text-sm">Voir votre évolution</p>
                 </div>
             </a>
-            
+
             <!-- Carte Profil -->
             <a href="#" class="card-hover">
                 <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition">
@@ -231,7 +231,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                 </div>
             </a>
         </div>
-        
+
         <!-- Section Activité Récente -->
         <div class="bg-white rounded-xl shadow-lg p-6">
             <div class="flex justify-between items-center mb-6">
@@ -240,7 +240,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     Voir tout <i class="fas fa-arrow-right ml-1"></i>
                 </a>
             </div>
-            
+
             <div class="space-y-4">
                 <!-- Activité 1 -->
                 <div class="flex items-center p-4 bg-blue-50 rounded-lg border border-blue-100">
@@ -255,7 +255,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                         Excellent
                     </div>
                 </div>
-                
+
                 <!-- Activité 2 -->
                 <div class="flex items-center p-4 bg-green-50 rounded-lg border border-green-100">
                     <div class="bg-green-100 p-3 rounded-lg mr-4">
@@ -269,7 +269,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                         Record
                     </div>
                 </div>
-                
+
                 <!-- Activité 3 -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-lg border border-gray-100">
                     <div class="bg-gray-100 p-3 rounded-lg mr-4">
@@ -285,61 +285,61 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                 </div>
             </div>
         </div>
-        
+
         <!-- Quiz Recommandés -->
         <div class="mt-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Quiz Recommandés pour Vous</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <?php if (empty($categoies)): ?>
-            
-            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-8 text-center">
-                <i class="fas fa-clipboard-list text-5xl text-yellow-400 mb-4"></i>
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Aucun categorie disponible</h3>
-                <p class="text-gray-600">Les enseignants préparent de nouveaux category.</p>
-            </div>
-        <?php else: ?>
 
-                <?php foreach ($categoies as $category): ?>
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition hover:-translate-y-1">
-                        <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
-                        
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3">
-                                <?php echo htmlspecialchars($category['nom']); ?>
-                            </h3>
-                            
-                            <p class="text-gray-600 mb-4 text-sm">
-                                <?php 
-                                $description = $category['description'] ?? 'Testez vos connaissances';
-                                echo htmlspecialchars(substr($description,0,80));
-                                if (strlen($description) > 80) echo '...';
-                                ?>
-                            </p>
-                            
-                            <div class="flex items-center text-sm text-gray-500 mb-6">
-                                <i class="far fa-calendar-alt mr-2"></i>
-                                <span>
-                                    <?php echo date('d/m/Y', strtotime($category['created_at'])); ?>
-                                </span>
-                            </div>
-                            
-                            <div class="flex gap-2">
-                                <a href="quiz_list.php?id=<?php echo $category['id']; ?>" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-center">
-                                    Démarrer
-                                </a>
-                                <button class="flex-1 border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-2 rounded-lg transition">
-                                    Plus d'info
-                                </button>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-8 text-center">
+                        <i class="fas fa-clipboard-list text-5xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Aucun categorie disponible</h3>
+                        <p class="text-gray-600">Les enseignants préparent de nouveaux category.</p>
+                    </div>
+                <?php else: ?>
+
+                    <?php foreach ($categoies as $category): ?>
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition hover:-translate-y-1">
+                            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">
+                                    <?php echo htmlspecialchars($category['nom']); ?>
+                                </h3>
+
+                                <p class="text-gray-600 mb-4 text-sm">
+                                    <?php
+                                    $description = $category['description'] ?? 'Testez vos connaissances';
+                                    echo htmlspecialchars(substr($description, 0, 80));
+                                    if (strlen($description) > 80) echo '...';
+                                    ?>
+                                </p>
+
+                                <div class="flex items-center text-sm text-gray-500 mb-6">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    <span>
+                                        <?php echo date('d/m/Y', strtotime($category['created_at'])); ?>
+                                    </span>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <a href="quiz_list.php?id=<?php echo $category['id']; ?>" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-center">
+                                        Démarrer
+                                    </a>
+                                    <button class="flex-1 border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-2 rounded-lg transition">
+                                        Plus d'info
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </main>
-    
+
     <!-- ========== FOOTER ========== -->
     <footer class="mt-12 bg-gray-800 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -352,7 +352,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     </div>
                     <p class="text-gray-400">Plateforme d'apprentissage interactive pour étudiants.</p>
                 </div>
-                
+
                 <!-- Colonne 2 -->
                 <div>
                     <h3 class="font-bold text-lg mb-4">Navigation</h3>
@@ -363,7 +363,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                         <li><a href="history.php" class="text-gray-400 hover:text-white">Historique</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Colonne 3 -->
                 <div>
                     <h3 class="font-bold text-lg mb-4">Support</h3>
@@ -373,7 +373,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                         <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Colonne 4 -->
                 <div>
                     <h3 class="font-bold text-lg mb-4">Légal</h3>
@@ -383,14 +383,14 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     </ul>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 QuizMaster. Tous droits réservés.</p>
                 <p class="mt-2">Projet éducatif - Version 2.0</p>
             </div>
         </div>
     </footer>
-    
+
     <!-- JavaScript pour interactivité -->
     <script>
         // Exemple simple d'interaction
@@ -405,7 +405,7 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
                     this.style.transform = 'translateY(0)';
                 });
             });
-            
+
             // Notification de bienvenue
             setTimeout(() => {
                 console.log('Bienvenue sur QuizMaster !');
@@ -413,4 +413,5 @@ $student_name = $_SESSION['user_nom'] ?? 'Étudiant';
         });
     </script>
 </body>
+
 </html>

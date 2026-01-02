@@ -4,7 +4,7 @@ require_once '../../classes/Database.php';
 require_once '../../classes/Security.php';
 require_once '../../classes/Category.php';
 require_once '../../classes/Quiz.php';
-require_once 'C:\laragon\www\Student-Quiz-Platform-V2\classes\studentClasses\ShowCategory.php';
+require_once '../../classes/studentClasses/ShowCategory.php';
 
 
 $showCat = new ShowCategory();
